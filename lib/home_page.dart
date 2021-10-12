@@ -4,14 +4,27 @@ import 'package:e_commerce/other_pages.dart';
 import 'package:e_commerce/user_sign_In.dart';
 import 'package:flutter/material.dart';
 
+import 'user_info.dart';
+
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  //const HomePage({Key? key}) : super(key: key);
+
+  String? _email;
+  HomePage(String _email){
+    this._email= _email;
+  }
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _HomePageState createState() => _HomePageState(_email!);
 }
 
 class _HomePageState extends State<HomePage> {
+
+  String? _email;
+  _HomePageState(String _email){
+    this._email= _email;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -216,7 +229,7 @@ class _HomePageState extends State<HomePage> {
             SizedBox(width: 65,),
             FlatButton(
                 onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>User_signIn()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>User_Info(_email.toString())));
                 },
                 child: Icon(Icons.perm_identity_outlined))
           ],
@@ -251,7 +264,7 @@ class _HomePageState extends State<HomePage> {
                     primary: Color(0xffb38300),
                 ),
                 onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Other_pages(assTxt)));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Other_pages(_email.toString(),assTxt)));
                 },
                 child: CircleAvatar(
                   backgroundColor: Colors.white,

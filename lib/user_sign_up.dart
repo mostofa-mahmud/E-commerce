@@ -3,6 +3,8 @@ import 'package:e_commerce/user_sign_In.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import 'user_info.dart';
+
 class User_signUp extends StatefulWidget {
   const User_signUp({Key? key}) : super(key: key);
 
@@ -25,7 +27,7 @@ class _User_signUpState extends State<User_signUp> {
       try{
         if(_passwrd == _rpasswrd && _passwrd.length >= 6){
           FirebaseUser newuser = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: _emailController.text, password: _passwrd);
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>User_signIn()));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>User_Info(_emailController.text)));
         }
         else if(_passwrd != _rpasswrd){
           showDialog(context: context, builder: (BuildContext context) {

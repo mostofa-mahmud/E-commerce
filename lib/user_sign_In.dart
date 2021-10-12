@@ -25,7 +25,7 @@ class _User_signInState extends State<User_signIn> {
       sinformstate.save();
       try{
         FirebaseUser user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _pass);
-        Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(_email)));
       }catch(e){
 
         if(e.toString().substring(0,17) == 'PlatformException'){

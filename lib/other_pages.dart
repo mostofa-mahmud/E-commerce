@@ -8,19 +8,27 @@ import 'package:flutter/material.dart';
 class Other_pages extends StatefulWidget {
   //const Other_pages({Key? key}) : super(key: key);
 
-  String page='';
-  Other_pages(this.page);
+  String? page;
+  String? _email;
+  Other_pages(String _email, String page){
+    this._email= _email;
+    this.page = page;
+  }
+
 
   @override
-  _Other_pagesState createState() => _Other_pagesState(this.page);
+  _Other_pagesState createState() => _Other_pagesState(this._email!, this.page!);
 }
 
 class _Other_pagesState extends State<Other_pages> {
 
-  String page="";
-  _Other_pagesState(this.page);
+  String? page;
+  String? _email;
+  _Other_pagesState(String _email, String page){
+    this.page = page;
+    this._email= _email;
+  }
 
-  //var item="";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -111,7 +119,7 @@ class _Other_pagesState extends State<Other_pages> {
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                         color: Colors.grey,
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(_email.toString())));
                           },
                         child: Text('Home',
                           style: TextStyle(
@@ -276,7 +284,7 @@ class _Other_pagesState extends State<Other_pages> {
                   primary: Color(0xffb38300),
                 ),
                 onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Other_pages(assTxt)));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Other_pages(_email.toString(),assTxt)));
                 },
                 child: CircleAvatar(
                   backgroundColor: Colors.white,

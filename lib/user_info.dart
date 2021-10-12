@@ -74,130 +74,128 @@ class _User_InfoState extends State<User_Info> {
 
 
 
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
+      backgroundColor: Color(0xFFff9f36),
+      appBar: AppBar(
         backgroundColor: Color(0xFFff9f36),
-        appBar: AppBar(
-          backgroundColor: Color(0xFFff9f36),
-          title: Text('User Info'),
-        ),
+        title: Text('User Info'),
+      ),
 
 
-        body: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Text('User Information', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Text('User Information', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
 
-                SizedBox(height: MediaQuery.of(context).size.height * 0.01,),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.01,),
 
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black, width: 2),
-                    borderRadius: BorderRadius.circular(60)
-                  ),
-                  height: MediaQuery.of(context).size.height * 0.18,
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  child: _image == null? Text(""):Image.file(_image!),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black, width: 2),
+                  borderRadius: BorderRadius.circular(5)
                 ),
+                height: MediaQuery.of(context).size.height * 0.2,
+                width: MediaQuery.of(context).size.width * 0.3,
+                child: _image == null? Text(""):Image.file(_image!),
+              ),
 
-                SizedBox(height: MediaQuery.of(context).size.height * 0.01,),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.01,),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    FloatingActionButton(
-                        onPressed: (){
-                          cameraImage();
-                        },
-                      child: Icon(Icons.camera_alt_outlined),
-                    ),
-
-                    SizedBox(width: MediaQuery.of(context).size.width *0.05, ),
-                    FloatingActionButton(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  FloatingActionButton(
                       onPressed: (){
-                        gallaryImg();
+                        cameraImage();
                       },
-                      child: Icon(Icons.photo_library_outlined),
-                    )
-                  ],
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.only(left: 25, right: 25),
-                  child: TextField(
-                    decoration: InputDecoration(
-                        labelText: "Name",
-                        hintText: "Your Full Name"),
-                    onChanged: (input){
-                      setState(() {
-                        _name=input;
-                      });
-                    },
+                    child: Icon(Icons.camera_alt_outlined),
                   ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.015,
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.015,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 25, right: 25),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                        labelText: "Address",
-                        hintText: "Your Current Location"),
-                    onChanged: (input){
-                      setState(() {
-                        _address=input;
-                      });
+
+                  SizedBox(width: MediaQuery.of(context).size.width *0.05, ),
+                  FloatingActionButton(
+                    onPressed: (){
+                      gallaryImg();
                     },
+                    child: Icon(Icons.photo_library_outlined),
+                  )
+                ],
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(left: 25, right: 25),
+                child: TextField(
+                  decoration: InputDecoration(
+                      labelText: "Name",
+                      hintText: "Your Full Name"),
+                  onChanged: (input){
+                    setState(() {
+                      _name=input;
+                    });
+                  },
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.015,
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.015,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 25, right: 25),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                      labelText: "Address",
+                      hintText: "Your Current Location"),
+                  onChanged: (input){
+                    setState(() {
+                      _address=input;
+                    });
+                  },
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.015,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 25, right: 25),
+                child: TextFormField(
+                  keyboardType: TextInputType.number,
+                  decoration:
+                  InputDecoration(
+                      labelText: "Mobile No",
+                      hintText: "01xxxxxxxxx"
                   ),
+                  onChanged: (input){
+                    setState(() {
+                      _mobile=input;
+                    });
+                  },
                 ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.015,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 25, right: 25),
-                  child: TextFormField(
-                    keyboardType: TextInputType.number,
-                    decoration:
-                    InputDecoration(
-                        labelText: "Mobile No",
-                        hintText: "01xxxxxxxxx"
-                    ),
-                    onChanged: (input){
-                      setState(() {
-                        _mobile=input;
-                      });
-                    },
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.015,
+              ),
+
+
+
+              FlatButton(
+                  color: Color(0xFFff503d),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20))
                   ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.015,
-                ),
-
-
-
-                FlatButton(
-                    color: Color(0xFFff503d),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(20))
-                    ),
-                    minWidth: MediaQuery.of(context).size.width * 0.8,
-                    onPressed: () {
-                      sendData();
-                      sendImage();
-                    },
-                    child: Text("Save Information",style: (TextStyle(color: Colors.white,fontSize: 18)),)
-                )
+                  minWidth: MediaQuery.of(context).size.width * 0.8,
+                  onPressed: () {
+                    sendData();
+                    sendImage();
+                  },
+                  child: Text("Save Information",style: (TextStyle(color: Colors.white,fontSize: 18)),)
+              )
 
 
 
 
-              ],
-            ),
+            ],
           ),
         ),
       ),
