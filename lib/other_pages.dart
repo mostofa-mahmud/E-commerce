@@ -2,6 +2,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce/details_page.dart';
 import 'package:e_commerce/home_page.dart';
+import 'package:e_commerce/profile.dart';
+import 'package:e_commerce/user_history.dart';
 import 'package:e_commerce/user_sign_In.dart';
 import 'package:flutter/material.dart';
 
@@ -164,17 +166,17 @@ class _Other_pagesState extends State<Other_pages> {
 
                 },
                 child: Icon(Icons.home)),
-            SizedBox(width: 65,),
+            SizedBox(width: 60,),
             FlatButton(
                 onPressed: (){
 
                 },
                 child: Icon(Icons.add_shopping_cart)),
 
-            SizedBox(width: 65,),
+            SizedBox(width: 60,),
             FlatButton(
                 onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>User_signIn()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>User()));
                 },
                 child: Icon(Icons.perm_identity_outlined))
           ],
