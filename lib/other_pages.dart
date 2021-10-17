@@ -176,7 +176,7 @@ class _Other_pagesState extends State<Other_pages> {
             SizedBox(width: 60,),
             FlatButton(
                 onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>User()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>User(_email!)));
                 },
                 child: Icon(Icons.perm_identity_outlined))
           ],
@@ -195,7 +195,7 @@ class _Other_pagesState extends State<Other_pages> {
 
 
   Widget _showProductItems(String caregoryName){
-    //item ='Gadget';
+    String item =caregoryName ;
     return StreamBuilder<QuerySnapshot>(
       stream: Firestore.instance.collection(caregoryName).snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
@@ -212,7 +212,13 @@ class _Other_pagesState extends State<Other_pages> {
             children: snapshot.data!.documents.map((document){
               return FlatButton(
                   onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> ProductDetails()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> Details(
+                        item,
+                        document['_product_name'] ?? '',
+                        document['_product_details'] ?? '',
+                        document['_product_price'] ?? '',
+                        document['Image']??''
+                    )));
                   },
                   child: ListTile(
 

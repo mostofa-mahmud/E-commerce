@@ -78,12 +78,7 @@ class _User_signInState extends State<User_signIn> {
               },
               child: Text("Admin")
           ),
-          FlatButton(
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>User_Info(_email.toString())));
-              },
-              child: Text("User Profile")
-          )
+
         ],
       ),
 

@@ -231,7 +231,7 @@ class _HomePageState extends State<HomePage> {
             SizedBox(width: 60,),
             FlatButton(
                 onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>User()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>User(_email!)));
                 },
                 child: Icon(Icons.perm_identity_outlined))
           ],

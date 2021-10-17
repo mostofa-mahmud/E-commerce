@@ -20,3 +20,19 @@ class DataBaseUserService{
     });
   }
 }
+
+
+class DataBaseProductService{
+  String uid;
+  DataBaseProductService({required this.uid});
+
+  final CollectionReference user = Firestore.instance.collection('E-Commerce');
+
+  Future UpdateUserData(String _product_Name, _product_price,_category) async{
+    return await user.document(uid).collection('product').add({
+      'Product_Name': _product_Name,
+      'Product_Price': _product_price,
+      'Product_Category': _category
+    });
+  }
+}

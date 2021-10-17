@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce/database.dart';
+import 'package:e_commerce/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
@@ -28,6 +29,7 @@ class _User_InfoState extends State<User_Info> {
   Future<void> sendData() async{
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
     await DataBaseUserService(uid: user.uid).UpdateUserData(_name, _address, _mobile, this._email);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=> User(_email!)));
   }
 
   sendImage() async {
