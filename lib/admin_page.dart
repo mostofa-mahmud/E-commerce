@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:e_commerce/user_history.dart';
+import 'package:e_commerce/user_sign_In.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +22,9 @@ class _Admin_pageState extends State<Admin_page> {
     "Women",
     "Men",
     "Devices",
+    "Software",
     "Gadgets",
-    "Games",
+    "Baby",
   ];
 
 
@@ -62,6 +64,8 @@ class _Admin_pageState extends State<Admin_page> {
       '_product_details': _product_details,
       'Image': imgUrl,
     });
+
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>Admin_page()));
   }
 
 
@@ -84,6 +88,25 @@ class _Admin_pageState extends State<Admin_page> {
                 Navigator.push(context, MaterialPageRoute(builder: (context)=>User_history()));
               },
               child: Text("User History")
+          ),
+
+
+          Padding(
+            padding: const EdgeInsets.only(left:10, top: 10),
+            child: FlatButton(
+              onPressed: (){
+                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>User_signIn()), (route) => false);
+              },
+              child: Column(
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.05,
+                    width: MediaQuery.of(context).size.width * 0.1,
+                    child: Icon(Icons.login_outlined),
+                  ),
+                ],
+              ),
+            ),
           )
         ],
 
@@ -117,10 +140,12 @@ class _Admin_pageState extends State<Admin_page> {
                     _category = 'Men';
                   } else if (_product == 'Devices') {
                     _category = 'Devices';
-                  } else if (_product == 'Gadgets') {
+                  }else if (_product == 'Software') {
+                    _category = 'Software';
+                  }else if (_product == 'Gadgets') {
                     _category = 'Gadgets';
-                  } else if (_product == 'Games') {
-                    _category = 'Games';
+                  } else if (_product == 'Baby') {
+                    _category = 'Baby';
                   }
                   print(_category);
                   return DropdownMenuItem(
@@ -284,8 +309,11 @@ class _Admin_pageState extends State<Admin_page> {
                   onPressed: (){
                   sendData();
                   },
-                  child: Text("Save")),
-            )
+                  child: Text("Save")
+              ),
+            ),
+
+
           ],
         ),
       ),

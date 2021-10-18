@@ -142,6 +142,14 @@ class _Other_pagesState extends State<Other_pages> {
                 _showProductItems('Gadgets')
               ]else if(page == 'Women')...[
                 _showProductItems('Women')
+              ]else if(page == 'Men')...[
+                _showProductItems('Men')
+              ]else if(page == 'Devices')...[
+                _showProductItems('Devices')
+              ]else if(page == 'Software')...[
+                _showProductItems('Software')
+              ]else if(page == 'Baby')...[
+                _showProductItems('Baby')
               ]
 
 
