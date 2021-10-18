@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_commerce/cart.dart';
 import 'package:e_commerce/user_info.dart';
 import 'package:e_commerce/user_sign_In.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -172,7 +173,7 @@ class _UserState extends State<User> {
             padding: const EdgeInsets.only(left: 15, top: 33),
             child: FlatButton(
               onPressed: (){
-                //Navigator.push(context, MaterialPageRoute(builder: (context)=>Cart()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>Cart()));
               },
               child: Row(
                 children: [

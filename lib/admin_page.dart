@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:e_commerce/user_history.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
@@ -80,7 +81,7 @@ class _Admin_pageState extends State<Admin_page> {
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
               color: Colors.orangeAccent,
               onPressed: (){
-
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>User_history()));
               },
               child: Text("User History")
           )

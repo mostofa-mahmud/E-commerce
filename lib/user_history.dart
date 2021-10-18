@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_commerce/order_history.dart';
 import 'package:flutter/material.dart';
 
 class User_history extends StatefulWidget {
@@ -65,7 +66,7 @@ class _User_historyState extends State<User_history> {
                                 ),
                                 onPressed: () {
                                   String userid = document.documentID;
-                                  //Navigator.push(context, MaterialPageRoute(builder: (context) => Order_History(userid)));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => Order_history(userid)));
                                   },
                                 child: Text('Order History')
                             )
