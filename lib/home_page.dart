@@ -1,5 +1,6 @@
 
 import 'package:e_commerce/admin_login.dart';
+import 'package:e_commerce/cart.dart';
 import 'package:e_commerce/other_pages.dart';
 import 'package:e_commerce/profile.dart';
 import 'package:e_commerce/user_history.dart';
@@ -224,7 +225,7 @@ class _HomePageState extends State<HomePage> {
             SizedBox(width: 60,),
             FlatButton(
                 onPressed: (){
-
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Cart()));
                 },
                 child: Icon(Icons.add_shopping_cart)),
 

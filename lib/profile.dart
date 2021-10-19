@@ -89,8 +89,9 @@ class _UserState extends State<User> {
                     if(snapshot.connectionState!= ConnectionState.done)
                       return Text("No Data Available..",style: TextStyle(color: Colors.white),);
                     return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("$fname",style: TextStyle(color: Colors.white,fontSize: 20),),
+                        Text("$fname",style: TextStyle(color: Colors.white,fontSize: 20)),
                         Text("$gmail",style:TextStyle(color: Colors.white))
                       ],
                     );
@@ -111,12 +112,18 @@ class _UserState extends State<User> {
               Navigator.push(context, MaterialPageRoute(builder: (context)=>User_Info(_email!)));
             }, child: Text('Edit Profile',style: TextStyle(color: Colors.white),)),
           ),
+
+
+
           Padding(
             padding: const EdgeInsets.only(left: 30, top: 33),
             child: Row(
               children: [
                 Container(
-                  color: Colors.yellow,
+                  decoration: BoxDecoration(
+                      color: Colors.yellow,
+                      borderRadius: BorderRadius.circular(7)
+                  ),
                   height: MediaQuery.of(context).size.height * 0.05,
                   width: MediaQuery.of(context).size.width * 0.1,
                   child: Icon(Icons.add_location_alt_outlined),
@@ -144,7 +151,10 @@ class _UserState extends State<User> {
             child: Row(
               children: [
                 Container(
-                  color: Colors.yellow,
+                  decoration: BoxDecoration(
+                      color: Colors.yellow,
+                      borderRadius: BorderRadius.circular(7)
+                  ),
                   height: MediaQuery.of(context).size.height * 0.05,
                   width: MediaQuery.of(context).size.width * 0.1,
                   child: Icon(Icons.circle),
@@ -159,7 +169,10 @@ class _UserState extends State<User> {
             child: Row(
               children: [
                 Container(
-                  color: Colors.yellow,
+                  decoration: BoxDecoration(
+                      color: Colors.yellow,
+                      borderRadius: BorderRadius.circular(7)
+                  ),
                   height: MediaQuery.of(context).size.height * 0.05,
                   width: MediaQuery.of(context).size.width * 0.1,
                   child: Icon(Icons.folder),
@@ -178,7 +191,10 @@ class _UserState extends State<User> {
               child: Row(
                 children: [
                   Container(
-                    color: Colors.yellow,
+                    decoration: BoxDecoration(
+                        color: Colors.yellow,
+                        borderRadius: BorderRadius.circular(7)
+                    ),
                     height: MediaQuery.of(context).size.height * 0.05,
                     width: MediaQuery.of(context).size.width * 0.1,
                     child: Icon(Icons.card_giftcard),
@@ -198,7 +214,10 @@ class _UserState extends State<User> {
               child: Row(
                 children: [
                   Container(
-                    color: Colors.yellow,
+                    decoration: BoxDecoration(
+                        color: Colors.yellow,
+                        borderRadius: BorderRadius.circular(7)
+                    ),
                     height: MediaQuery.of(context).size.height * 0.05,
                     width: MediaQuery.of(context).size.width * 0.1,
                     child: Icon(Icons.login_outlined),

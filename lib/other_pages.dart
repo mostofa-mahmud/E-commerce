@@ -1,5 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_commerce/cart.dart';
 import 'package:e_commerce/details_page.dart';
 import 'package:e_commerce/home_page.dart';
 import 'package:e_commerce/profile.dart';
@@ -114,23 +115,6 @@ class _Other_pagesState extends State<Other_pages> {
                     ),
 
 
-                    SizedBox(width: MediaQuery.of(context).size.width * 0.45),
-
-
-                    FlatButton(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                        color: Colors.grey,
-                        onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(_email.toString())));
-                          },
-                        child: Text('Home',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                          ),
-                        )
-                    ),
-
 
                   ],
                 ),
@@ -171,13 +155,13 @@ class _Other_pagesState extends State<Other_pages> {
           children: [
             FlatButton(
                 onPressed: (){
-
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(_email.toString())));
                 },
                 child: Icon(Icons.home)),
             SizedBox(width: 60,),
             FlatButton(
                 onPressed: (){
-
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Cart()));
                 },
                 child: Icon(Icons.add_shopping_cart)),
 
