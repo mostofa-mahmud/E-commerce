@@ -2,6 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
@@ -21,6 +22,8 @@ class _CartState extends State<Cart> {
       user = userData;
     });
   }
+
+  var total=0, productId;
 
   @override
   void initState() {
@@ -68,7 +71,18 @@ class _CartState extends State<Cart> {
                                 document['Product_Price'] ?? "No Product Available",
                                 style: TextStyle(color: Colors.white),
                               ),
+
+
                             ],
+                          ),
+
+                          _quantity(
+                              document['count'] ?? 'no product count',
+                            document['Product_Id'] ?? 'no product id',
+                            document['Product_Category'] ?? 'no product Category',
+                            document['Product_Name'] ?? 'no product name',
+                            document['Product_Price'] ?? ' no product price',
+
                           ),
 
 
@@ -120,6 +134,80 @@ class _CartState extends State<Cart> {
 
               );
           }),
+    );
+  }
+
+
+
+  Widget _quantity(var countItem, var pId, var pCategory, var pName, var pPrice){
+
+    var count = int.parse(countItem.toString());
+
+    return Container(
+
+      child: Row(
+        children: [
+
+          IconButton(
+              icon: Icon(CupertinoIcons.minus),
+              onPressed: () async {
+                try{
+                  count--;
+                  setState(() {
+                    this.total=this.total-int.parse(pPrice.toString());
+                  });
+
+                  FirebaseUser user = await FirebaseAuth.instance.currentUser();
+                  final CollectionReference userRef = Firestore.instance.collection('E-Commerce');
+                  await userRef.document(user.uid).collection('product').document(pId.toString()).updateData({
+
+
+                    'Product_Id': pId.toString(),
+                    'Product_Name': pName.toString(),
+                    'Product_Price': total.toString(),
+                    'Product_Category': pCategory.toString(),
+                    'count': count
+                  });
+                }catch(e){
+                  print(e);
+                }
+
+              }
+          ),
+          Text('$count'),
+
+          IconButton(
+              icon: Icon(CupertinoIcons.plus),
+              onPressed: () async {
+                try{
+                  count++;
+                  setState(() {
+                    this.total=this.total+int.parse(pPrice.toString());
+                  });
+
+                  FirebaseUser user = await FirebaseAuth.instance.currentUser();
+                  final CollectionReference userRef = Firestore.instance.collection('E-Commerce');
+                  await userRef.document(user.uid).collection('product').document(pId.toString()).updateData({
+
+
+                    'Product_Id': pId.toString(),
+                    'Product_Name': pName.toString(),
+                    'Product_Price': total.toString(),
+                    'Product_Category': pCategory.toString(),
+                    'count': count
+                  });
+
+                }catch(e){
+                  print(e);
+                }
+              }
+          ),
+
+
+
+        ],
+      ),
+
     );
   }
 }

@@ -207,6 +207,7 @@ class _Other_pagesState extends State<Other_pages> {
                     Navigator.push(context, MaterialPageRoute(builder: (context)=> Details(
                         item,
                         document['_product_name'] ?? '',
+                        document['_product_id'] ??'',
                         document['_product_details'] ?? '',
                         document['_product_price'] ?? '',
                         document['Image']??''

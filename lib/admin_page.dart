@@ -17,7 +17,7 @@ class Admin_page extends StatefulWidget {
 class _Admin_pageState extends State<Admin_page> {
 
   var _product;
-  String _product_name="", _product_price="", _product_details="", image="", _category="";
+  String _product_name="",_product_id="", _product_price="", _product_details="", image="", _category="";
   List productItem= [
     "Women",
     "Men",
@@ -60,6 +60,7 @@ class _Admin_pageState extends State<Admin_page> {
     await(imgUrl);
     Firestore.instance.collection(_category).add({
       '_product_name': _product_name,
+      '_product_id': _product_id,
       '_product_price': _product_price,
       '_product_details': _product_details,
       'Image': imgUrl,
@@ -231,6 +232,37 @@ class _Admin_pageState extends State<Admin_page> {
                 onChanged: (input) {
                   setState(() {
                     _product_name = input;
+                  });
+                },
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.only(left: 25, right: 25, top: 10),
+              child: TextFormField(
+                keyboardType: TextInputType.number,
+                style: TextStyle(color: Colors.white),
+                cursorColor: Colors.white,
+                decoration: InputDecoration(
+                  hintText: "Product ID",
+                  hintStyle: TextStyle(
+                    color: Colors.white,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                    borderSide: BorderSide(color: Colors.white, width: 3.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                    borderSide: BorderSide(
+                      color: Colors.white,
+                      width: 1.0,
+                    ),
+                  ),
+                ),
+                onChanged: (input) {
+                  setState(() {
+                    _product_id = input;
                   });
                 },
               ),

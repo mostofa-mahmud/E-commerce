@@ -8,26 +8,38 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class Details extends StatefulWidget {
 
-  var item, product_name, product_details, price, pic;
-  Details(String this.item, String this.product_name, String this.product_details, String this.price, var this.pic);
+  var item, product_name, product_details, price, pic, product_id;
+  Details(String this.item, String this.product_name,  String this.product_id, String this.product_details, String this.price, var this.pic);
 
   @override
-  _DetailsState createState() => _DetailsState(this.item, this.product_name, this.product_details, this.price, this.pic);
+  _DetailsState createState() => _DetailsState(this.item, this.product_name, this.product_id, this.product_details, this.price, this.pic);
 }
 
 class _DetailsState extends State<Details> {
 
-  var item, product_name, product_details, price, pic,_category;
-  _DetailsState(this.item, this.product_name, this.product_details, this.price,this.pic);
+  var item, product_name, product_details, price, pic,_category, count=1, product_id;
+  _DetailsState(this.item, this.product_name, this.product_id, this.product_details, this.price, this.pic);
 
   final CollectionReference brewcollection = Firestore.instance.collection('E-Commerce');
   String uid='';
 
   Future<void> sendDataProduct()async{
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
-    await DataBaseProductService(uid: user.uid).UpdateUserData(
-        product_name,price,_category = this.item
-    );
+
+
+    //await DataBaseProductService(uid: user.uid).UpdateUserData(
+      //  product_name,price,_category = this.item, count=1, product_id
+    //);
+
+    final CollectionReference userRef = Firestore.instance.collection('E-Commerce');
+    await userRef.document(user.uid).collection('product').document(product_id.toString()).setData({
+      'Product_Name': product_name,
+      'Product_Id': product_id,
+      'Product_Price': price,
+      'Product_Category': item,
+      'count': count
+    });
+
     Navigator.push(context, MaterialPageRoute(builder: (context)=>Cart()));
 
   }

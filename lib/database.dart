@@ -28,11 +28,12 @@ class DataBaseProductService{
 
   final CollectionReference user = Firestore.instance.collection('E-Commerce');
 
-  Future UpdateUserData(String _product_Name, _product_price,_category) async{
+  Future UpdateUserData(String _product_Name, _product_price,_category, count, product_id) async{
     return await user.document(uid).collection('product').add({
       'Product_Name': _product_Name,
       'Product_Price': _product_price,
-      'Product_Category': _category
+      'Product_Category': _category,
+      'count': count
     });
   }
 }
