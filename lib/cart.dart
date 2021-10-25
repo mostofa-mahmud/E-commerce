@@ -1,5 +1,4 @@
 
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -49,11 +48,13 @@ class _CartState extends State<Cart> {
               return ListView(
                 shrinkWrap: true,
                 children: snapshot.data!.documents.map((document){
+
                   return Container(
                     height: MediaQuery.of(context).size.height * 0.07,
                     width: MediaQuery.of(context).size.width,
 
                     child: ListTile(
+
                       title: Row(
                         children: [
 
@@ -134,6 +135,12 @@ class _CartState extends State<Cart> {
 
               );
           }),
+
+
+        bottomNavigationBar: _bottomNavBar(),
+
+
+
     );
   }
 
@@ -151,26 +158,55 @@ class _CartState extends State<Cart> {
           IconButton(
               icon: Icon(CupertinoIcons.minus),
               onPressed: () async {
-                try{
-                  count--;
-                  setState(() {
-                    this.total=this.total-int.parse(pPrice.toString());
-                  });
+                if(count <= 0){
+                  try {
+                    count = 0;
+                    //total=0;
+                    setState(() {
+                      this.total=this.total-0;
+                    });
+                    FirebaseUser user =
+                    await FirebaseAuth.instance.currentUser();
+                    final CollectionReference userRef =
+                    Firestore.instance.collection('E-Commerce');
+                    await userRef
+                        .document(user.uid)
+                        .collection('product')
+                        .document(pId.toString())
+                        .updateData({
 
-                  FirebaseUser user = await FirebaseAuth.instance.currentUser();
-                  final CollectionReference userRef = Firestore.instance.collection('E-Commerce');
-                  await userRef.document(user.uid).collection('product').document(pId.toString()).updateData({
+                      'Product_Id': pId.toString(),
+                      'Product_Name': pName.toString(),
+                      'Product_Price': pPrice.toString(),
+                      'Product_Category': pCategory.toString(),
+                      'count': count
+                    });
+                  } catch (e) {
+                    print(e);
+                  }
+                }else{
+                  try{
+                    count--;
+                    setState(() {
+                      this.total=this.total-int.parse(pPrice.toString());
+                    });
+
+                    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+                    final CollectionReference userRef = Firestore.instance.collection('E-Commerce');
+                    await userRef.document(user.uid).collection('product').document(pId.toString()).updateData({
 
 
-                    'Product_Id': pId.toString(),
-                    'Product_Name': pName.toString(),
-                    'Product_Price': total.toString(),
-                    'Product_Category': pCategory.toString(),
-                    'count': count
-                  });
-                }catch(e){
-                  print(e);
+                      'Product_Id': pId.toString(),
+                      'Product_Name': pName.toString(),
+                      'Product_Price': pPrice.toString(),
+                      'Product_Category': pCategory.toString(),
+                      'count': count
+                    });
+                  }catch(e){
+                    print(e);
+                  }
                 }
+
 
               }
           ),
@@ -192,7 +228,7 @@ class _CartState extends State<Cart> {
 
                     'Product_Id': pId.toString(),
                     'Product_Name': pName.toString(),
-                    'Product_Price': total.toString(),
+                    'Product_Price': pPrice.toString(),
                     'Product_Category': pCategory.toString(),
                     'count': count
                   });
@@ -208,6 +244,47 @@ class _CartState extends State<Cart> {
         ],
       ),
 
+    );
+  }
+
+
+
+
+
+  Widget _bottomNavBar(){
+    return Container(
+      height: MediaQuery.of(context).size.height * .25,
+      color: Colors.white,
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 10, top: 10,bottom: 13),
+                child: Column(
+                  children: [
+                    Text(
+                      'TOTAL',
+                      style: TextStyle(
+                          color: Color(0xFFff9f36),
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text('\$'+
+                        '${this.total}',
+                      style: TextStyle(
+                          color: Color(0xFFff9f36),
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          )
+        ],
+      ),
     );
   }
 }

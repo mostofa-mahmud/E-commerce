@@ -17,7 +17,7 @@ class Details extends StatefulWidget {
 
 class _DetailsState extends State<Details> {
 
-  var item, product_name, product_details, price, pic,_category, count=1, product_id;
+  var item, product_name, product_details, price, pic,_category, count=0, product_id;
   _DetailsState(this.item, this.product_name, this.product_id, this.product_details, this.price, this.pic);
 
   final CollectionReference brewcollection = Firestore.instance.collection('E-Commerce');
